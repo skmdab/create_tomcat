@@ -53,14 +53,16 @@ echo "$INSTANCENAME Server Created Successfully!"
 
 PUBLICIP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[].Instances[].PublicIpAddress' | cut -d "[" -f2 | cut -d "]" -f1 | tr -d '" ')
 
-LINE="[$INSTANCENAME]\n\n$PUBLICIP ansible_user=ec2-user ansible_ssh_private_key_file=filinta.pem"
+PCLINE="[$INSTANCENAME]\n\n$PUBLICIP ansible_user=ec2-user ansible_ssh_private_key_file=/home/ansible/filinta.pem"
+
+PHLINE="[$INSTANCENAME]\n\n$PUBLICIP ansible_user=ec2-user ansible_ssh_private_key_file=filinta.pem"
 
 PATH="/var/lib/jenkins/workspace/tomcat"
 
 if [ "$(echo "$PWD")" = "$PATH" ]; then
-  echo "$LINE" > /etc/ansible/hosts
+  echo "$PCLINE" > /etc/ansible/hosts
 else
-  echo "$LINE" > hosts
+  echo "$PHLINE" > hosts
 fi
 
 
