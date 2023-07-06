@@ -55,4 +55,4 @@ PUBLICIP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reser
 
 LINE="[$INSTANCENAME]\n\n$PUBLICIP ansible_user=ec2-user ansible_ssh_private_key_file=/home/ansible/filinta.pem"
 
-echo -e "$LINE" > hosts
+echo "$LINE" > hosts
