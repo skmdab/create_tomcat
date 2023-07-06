@@ -55,4 +55,12 @@ PUBLICIP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reser
 
 LINE="[$INSTANCENAME]\n\n$PUBLICIP ansible_user=ec2-user ansible_ssh_private_key_file=filinta.pem"
 
-echo "$LINE" > hosts
+PATH="/var/lib/jenkins/workspaces/tomcat"
+
+if [ echo "$PWD" = "$PATH" ]; then
+   echo "$LINE" > /etc/ansible/hosts
+else
+  echo "$LINE" > hosts
+fi
+
+
