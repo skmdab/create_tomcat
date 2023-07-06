@@ -57,7 +57,7 @@ LINE="[$INSTANCENAME]\n\n$PUBLICIP ansible_user=ec2-user ansible_ssh_private_key
 
 PATH="/var/lib/jenkins/workspace/tomcat"
 
-if [ echo "$PWD" = "$PATH" ]; then
+if [ "$(echo "$PWD")" = "$PATH" ]; then
   echo "$LINE" > /etc/ansible/hosts
 else
   echo "$LINE" > hosts
