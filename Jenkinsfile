@@ -17,7 +17,10 @@ pipeline{
 
         stage('Installing tomcat package into server'){
             steps{
-                sh "ansible-playbook installtomcat.yaml"
+                withCredentials([file(credentialsId: 'pemfile', variable: 'PEMFILE')]) {
+                 sh "ansible-playbook installtomcat.yaml" --private-key=${PEMFILE}
+                }
+               
             }
         }
     }
