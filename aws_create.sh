@@ -51,7 +51,6 @@ progress_bar 55
 
 echo "$INSTANCENAME Server Created Successfully!"
 
-chmod 700 filinta.pem
 
 PUBLICIP=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query 'Reservations[].Instances[].PublicIpAddress' | cut -d "[" -f2 | cut -d "]" -f1 | tr -d '" ')
 
