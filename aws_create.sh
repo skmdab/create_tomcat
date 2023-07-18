@@ -59,12 +59,13 @@ $PUBLICIP ansible_user=ec2-user"
 
 PHLINE="[$INSTANCENAME]\n\n$PUBLICIP ansible_user=ec2-user"
 
-PATH="/root/.jenkins/workspace/$INSTANCENAME"
+PATH1="/var/lib/jenkins/workspace/$INSTANCENAME"
+PATH2="/root/.jenkins/workspace/$INSTANCENAME"
 
-if [ "$(echo "$PWD")" = "$PATH" ]; then
+if [ "$(echo "$PWD")" = "$PATH1" ]; then
+  echo "$PCLINE" > hosts
+elif [ "$(echo "$PWD")" = "$PATH2" ]; then
   echo "$PCLINE" > hosts
 else
   echo "$PHLINE" > hosts
 fi
-
-
